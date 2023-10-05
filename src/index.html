@@ -34,6 +34,12 @@
             line-height: 1.333;
             display: flex;
         }
+        body.lost {
+            background: #9d2929;
+            background-color: radial-gradient(circle, #F11 42%,#9d2929 69%);
+        }
+
+        .lost .emoji span { margin-left: 10px; }
 
         .emoji {
             margin: auto;
@@ -66,5 +72,34 @@
         <!-- GOTTEM -->
         <a href="https://youtu.be/DYmKNd5y8GM?t=2" title="lmao">🍋🥮</a>
     </h1>
+
+    <script>
+        (() => {
+            let progress = 0;
+            let progressTimeout = null;
+
+            document.addEventListener('keyup', (e) => {
+                if (!progressTimeout) clearTimeout(progressTimeout)
+
+                if (progress == 0 && e.key == 7) progress++;
+                else if (progress == 1 && e.key == 5) progress++;
+                else if (progress == 2 && e.key == 2) progress++;
+                else if (progress == 3 && e.key == 1) progress++;
+                else progress = 0;
+
+                progressTimeout = setTimeout(() => { progress = 0; }, 1000);
+
+                if (progress == 4) {
+                    document.querySelector('a[title=lmao]').innerHTML = `
+                        <span class="bounce">😭</span>
+                        <span class="bounce">🇵</span><span class="bounce">🇪</span><span class="bounce">🇷</span><span class="bounce">🇩</span><span class="bounce">🇮</span>
+                        <span class="bounce">😭</span>
+                    `
+                    document.body.classList.add('lost')
+
+                }
+            })
+        })()
+    </script>
 </body>
 </html>
