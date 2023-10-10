@@ -82,7 +82,7 @@
             let progressTimeout = null
             const sequence = [7, 5, 2, 1]
 
-            document.addEventListener('keyup', (e) => {
+            function checkKeySequence (e) {
                 if (progressTimeout) clearTimeout(progressTimeout)
 
                 if (progress < sequence.length) {
@@ -100,9 +100,13 @@
                     `
                     document.body.classList.add('lost')
 
+                    document.removeEventListener('keyup', checkKeySequence)
+
                 }
                 progressTimeout = setTimeout(() => { progress = 0 }, 1000)
-            })
+            }
+
+            document.addEventListener('keyup', checkKeySequence)
         })()
     </script>
 </body>
