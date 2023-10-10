@@ -80,19 +80,19 @@
         (() => {
             let progress = 0
             let progressTimeout = null
+            const sequence = [7, 5, 2, 1]
 
             document.addEventListener('keyup', (e) => {
                 if (progressTimeout) clearTimeout(progressTimeout)
 
-                if (progress == 0 && e.key == 7) progress++
-                else if (progress == 1 && e.key == 5) progress++
-                else if (progress == 2 && e.key == 2) progress++
-                else if (progress == 3 && e.key == 1) progress++
-                else progress = 0
-
-                progressTimeout = setTimeout(() => { progress = 0 }, 1000)
-
-                if (progress == 4) {
+                if (progress < sequence.length) {
+                    if (sequence[progress] == e.key) {
+                        progress++
+                    } else {
+                        progress = 0
+                    }
+                }
+                if (progress == sequence.length) {
                     document.querySelector('a[title=lmao]').innerHTML = `
                         <span>😭</span>
                         <span>🇵</span><span>🇪</span><span>🇷</span><span>🇩</span><span>🇮</span>
@@ -101,6 +101,7 @@
                     document.body.classList.add('lost')
 
                 }
+                progressTimeout = setTimeout(() => { progress = 0 }, 1000)
             })
         })()
     </script>
