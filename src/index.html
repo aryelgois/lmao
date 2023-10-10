@@ -82,7 +82,7 @@
             let progressTimeout = null
 
             document.addEventListener('keyup', (e) => {
-                if (!progressTimeout) clearTimeout(progressTimeout)
+                if (progressTimeout) clearTimeout(progressTimeout)
 
                 if (progress == 0 && e.key == 7) progress++
                 else if (progress == 1 && e.key == 5) progress++
