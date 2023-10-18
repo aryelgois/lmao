@@ -105,7 +105,6 @@
                     document.body.classList.add('lost')
 
                     document.removeEventListener('keyup', checkKeySequence)
-                    clearTimeout(progressTimeout)
                 } else {
                     progressTimeout = setTimeout(() => { progress = 0 }, 1000)
                 }
