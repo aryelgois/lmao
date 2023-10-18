@@ -83,7 +83,10 @@
             const sequence = [7, 5, 2, 1]
 
             function checkKeySequence (e) {
-                if (progressTimeout) clearTimeout(progressTimeout)
+                if (progressTimeout) {
+                    clearTimeout(progressTimeout)
+                    progressTimeout = null
+                }
 
                 if (progress < sequence.length) {
                     if (sequence[progress] == e.key) {
